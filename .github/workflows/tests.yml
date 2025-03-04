@@ -55,7 +55,7 @@ jobs:
             - name: Run Frontend Tests
               run: |
                 cd front
-                npm run test -- --code-coverage --watch=false
+                npm run test -- --code-coverage --watch=false --browsers=ChromeHeadless
 
             - name: Upload Frontend Coverage Report
               uses: actions/upload-artifact@v4
