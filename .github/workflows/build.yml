@@ -9,7 +9,7 @@ on:
 
 jobs:
   build-backend:
-    name: Build and analyze
+    name: Backend => Build & Analyze
     runs-on: ubuntu-latest
 
     steps:
@@ -43,4 +43,5 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_BACKEND }}
         run: |
           cd back
-          mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=msjemenblc_ci-cd-project_backend
+          mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dproject.settings=sonar-project.properties
+
