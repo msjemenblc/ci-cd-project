@@ -15,6 +15,15 @@
 	<description>L'application de joke par excellence !</description>
 	<properties>
 		<java.version>11</java.version>
+
+		<!-- Propriétés SonarQube -->
+		<sonar.organization>msjemenblc</sonar.organization>
+		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+		<sonar.projectKey>msjemenblc_ci-cd-project_backend</sonar.projectKey>
+		<sonar.projectName>ci-cd-project_backend</sonar.projectName>
+		<sonar.sources>src/main/java</sonar.sources>
+		<sonar.tests>src/test/java</sonar.tests>
+		<sonar.exclusions>../frontend/**</sonar.exclusions>		
 	</properties>
 	<dependencies>
 		<dependency>
