@@ -45,3 +45,22 @@ jobs:
               run: |
                 cd back
                 mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=msjemenblc_ci-cd-project
+
+            - name: Set up Node.js fro Frontend
+              uses: actions/setup-node@v4
+              with:
+                node-version: 18
+
+            - name: Install Dependencies
+              run: |
+                cd front
+                npm install
+
+            - name: Run SonarQube analysis for frontend
+              run: |
+                cd front
+                npx sonar-scanner \
+                  -Dsonar.projectKey=msjemenblc_ci-cd-project \
+                  -Dsonar.organization=msjemenblc \
+                  -Dsonar.host.url=https://sonarcloud.io \
+                  -Dsonar.sources=src \
