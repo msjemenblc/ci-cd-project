@@ -9,8 +9,8 @@ on:
       - main
 
 jobs:
-  build-backend:
-    name: Backend build and analyze
+  sonar-analysis:
+    name: Build & Analyze (Backend + Frontend)
     runs-on: ubuntu-latest
 
     steps:
@@ -39,9 +39,18 @@ jobs:
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
 
-      - name: Build and analyze
+      - name: Build & Test Backend
+        run: |
+          cd back
+          mvn -B verify
+
+      - name: Install Frontend Dependencies
+        run: |
+          cd front
+          npm install
+
+      - name: Run SonarCloud Analysis
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
-          cd back
-          mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=msjemenblc_ci-cd-project
+          sonar-scanner
