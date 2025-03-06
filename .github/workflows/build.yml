@@ -43,6 +43,7 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
+          cd back
           mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
 
   build-frontend:
