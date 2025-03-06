@@ -23,7 +23,7 @@
 		<sonar.projectName>ci-cd-project_backend</sonar.projectName>
 		<sonar.sources>src/main/java</sonar.sources>
 		<sonar.tests>src/test/java</sonar.tests>
-		<sonar.exclusions>../frontend/**</sonar.exclusions>		
+		<sonar.exclusions>../front/**</sonar.exclusions>		
 	</properties>
 	<dependencies>
 		<dependency>
