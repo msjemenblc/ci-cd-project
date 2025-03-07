@@ -11,16 +11,16 @@ COPY front/ /usr/local/app/
 
 # Installer les dépendances et construire l'application
 RUN npm install
-RUN npm run build
+RUN npm run build --prod
 
 # Étape 2 : Préparer l'image de production avec Nginx
 FROM nginx:latest AS production
 
-# Copier la configuration Nginx (si tu en as une spécifique)
+# Copier la configuration Nginx personnalisée
 COPY front/nginx.conf /etc/nginx/conf.d/default.conf
 
-# Copier le build du frontend dans le répertoire de Nginx pour servir l'application
-COPY --from=build /usr/local/app/dist /usr/share/nginx/html
+# Copier le build généré du frontend dans le répertoire de Nginx pour servir l'application
+COPY --from=build /usr/local/app/dist/bobapp /usr/share/nginx/html
 
 # Exposer le port sur lequel l'application va tourner
 EXPOSE 80
